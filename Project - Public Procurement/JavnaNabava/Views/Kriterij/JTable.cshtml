@@ -1,0 +1,60 @@
+﻿@model KriterijiViewModel
+
+@{
+    ViewBag.Title = "Kriterij";
+}
+<link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="~/lib/jtable/lib/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+
+
+<div class="row">
+    <div class="col-sm-12" id="kriteriji">
+
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/jquery.jtable.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/localization/jquery.jtable.hr.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var baseurl = window.location.href.replace("/Kriterij/JTable", "")
+            console.log(baseurl)
+            $('#kriteriji').jtable({
+                title: 'Popis kriterija',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                defaultSorting: 'SifKriterija DESC',
+                actions: {
+                    listAction: baseurl + '/jtable/kriterij/getall',
+                    createAction: baseurl + '/jtable/kriterij/create',
+                    updateAction: baseurl + '/jtable/kriterij/update',
+                    deleteAction: baseurl + '/jtable/kriterij/delete'
+                },
+                fields: {
+
+                    SifKriterija: {
+                        key: true,
+                        title: 'Sifra kriterija'
+
+                    },
+                    NazivKriterija: {
+                        title: 'Naziv kriterija',
+                        width: '20%'
+                    }
+                }
+            });
+
+            $("#kriteriji").jtable('load');
+
+
+        });
+    </script>
+    <partial name="IncludeValidation" />
+}

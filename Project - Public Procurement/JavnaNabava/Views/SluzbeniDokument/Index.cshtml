@@ -1,0 +1,93 @@
+﻿@model JavnaNabava.ViewModels.SluzbeniDokumentiViewModel
+
+@{
+    ViewBag.Title = "Službeni dokumenti";
+}
+
+<h2>Popis dokumenata</h2>
+
+<a asp-action="Create">Unos novog dokumenta</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-right">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Sifra dokumenta
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Klasa dokumenta
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)">
+                    Ime dokumenta
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="4" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 4 ? !Model.PagingInfo.Ascending : true)">
+                    Urudžbeni broj
+                </a>
+            </th>
+            <th>
+                    Tekst dokumenta
+            </th>
+            <th>
+                <a asp-route-sort="6" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 6 ? !Model.PagingInfo.Ascending : true)">
+                    Vrsta dokumenta
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="7" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 7 ? !Model.PagingInfo.Ascending : true)">
+                    Šifra prijave
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sluzbeniDokument in Model.SluzbeniDokumenti)
+        {
+        <tr>
+            <td class="text-center">@sluzbeniDokument.SifDokumenta</td>
+            <td class="text-left">@sluzbeniDokument.KlasaDokumenta</td>
+            <td class="text-center">@sluzbeniDokument.ImeDokumenta</td>
+            <td class="text-center">@sluzbeniDokument.UrudzbeniBroj</td>
+            <td class="text-left">
+                @if (sluzbeniDokument.TekstDokumenta!=null && sluzbeniDokument.TekstDokumenta.Length > 0)
+                {
+                    <a href="@Url.Action("GetFile", "SluzbeniDokument", new { id = sluzbeniDokument.SifDokumenta })">Preuzmi file</a>
+                }
+            </td>
+            <td class="text-center">@sluzbeniDokument.VrstaDokumenta</td>
+            <td class="text-center">@sluzbeniDokument.SifPrijave</td>
+            <td class="btn-group">
+                <a asp-action="Edit"
+                   asp-route-id="@sluzbeniDokument.SifDokumenta"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-sort="@Model.PagingInfo.Sort"
+                   asp-route-ascending="@Model.PagingInfo.Ascending"
+                   class="btn btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+
+                <form asp-action="Delete" method="post"
+                      asp-route-page="@Model.PagingInfo.CurrentPage"
+                      asp-route-sort="@Model.PagingInfo.Sort"
+                      asp-route-ascending="@Model.PagingInfo.Ascending">
+                    <input type="hidden" name="SifDokumenta" value="@sluzbeniDokument.SifDokumenta" />
+                    <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,93 @@
+﻿@model Stavka
+
+@{
+    ViewBag.Title = "Nova stavka";
+}
+
+<h2>Unos nove valute</h2>
+
+
+
+<form asp-action="Create">
+    <div asp-validation-summary="All"></div>
+
+
+    <div class="form-group">
+        <label asp-for="NazivStavke"></label>
+        <div><span asp-validation-for="NazivStavke" class="text-danger"></span></div>
+        <input asp-for="NazivStavke" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="JedCijena"></label>
+        <div><span asp-validation-for="JedCijena" class="text-danger"></span></div>
+        <input asp-for="JedCijena" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StopaPdv"></label>
+        <div><span asp-validation-for="StopaPdv" class="text-danger"></span></div>
+        <input asp-for="StopaPdv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Kolicina"></label>
+        <div><span asp-validation-for="Kolicina" class="text-danger"></span></div>
+        <input asp-for="Kolicina" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UkCijena"></label>
+        <div><span asp-validation-for="UkCijena" class="text-danger"></span></div>
+        <input asp-for="UkCijena" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NapomenaPonuditelja"></label>
+        <div><span asp-validation-for="NapomenaPonuditelja" class="text-danger"></span></div>
+        <input asp-for="NapomenaPonuditelja" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="JedCijenaSaPdv"></label>
+        <div><span asp-validation-for="JedCijenaSaPdv" class="text-danger"></span></div>
+        <input asp-for="JedCijenaSaPdv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UkCijenaSaPdv"></label>
+        <div><span asp-validation-for="UkCijenaSaPdv" class="text-danger"></span></div>
+        <input asp-for="UkCijenaSaPdv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IznosPdv"></label>
+        <div><span asp-validation-for="IznosPdv" class="text-danger"></span></div>
+        <input asp-for="IznosPdv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NapomenaNarucitelja"></label>
+        <div><span asp-validation-for="NapomenaNarucitelja" class="text-danger"></span></div>
+        <input asp-for="NapomenaNarucitelja" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SifTroskovnik"></label>
+        <div><span asp-validation-for="SifTroskovnik" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifTroskovnik" asp-items="ViewBag.sifraTroskovnik">
+            <option disabled selected value="">Odaberite sifru troskovnika</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SifVrstaStavke"></label>
+        <div><span asp-validation-for="SifVrstaStavke" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifVrstaStavke" asp-items="ViewBag.vrstaStavke">
+            <option disabled selected value="">Odaberite vrstu stavke</option>
+        </select>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}
+

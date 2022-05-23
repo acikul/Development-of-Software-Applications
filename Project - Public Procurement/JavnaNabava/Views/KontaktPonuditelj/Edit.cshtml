@@ -1,0 +1,45 @@
+﻿@model JavnaNabava.Models.KontaktPonuditelj
+
+
+<h1>@Model.OibponuditeljaNavigation.NazivPonuditelja</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit"
+                asp-route-page="@ViewBag.Page"
+                asp-route-sort="@ViewBag.Sort"
+                asp-route-ascending="@ViewBag.Ascending">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="SifKontakt" />
+            <div class="form-group">
+                <label asp-for="TekstKontakta" class="control-label"></label>
+                <input asp-for="TekstKontakta" class="form-control" />
+                <span asp-validation-for="TekstKontakta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ponuditelj</label>
+                <select asp-for="Oibponuditelja" class="form-control" asp-items="ViewBag.Oibponuditelja"></select>
+                <span asp-validation-for="Oibponuditelja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Vrsta kontakta</label>
+                <select asp-for="SifVrsteKontakta" class="form-control" asp-items="ViewBag.SifVrsteKontakta"></select>
+                <span asp-validation-for="SifVrsteKontakta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pohrani promjene" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"
+       asp-route-page="@ViewBag.Page"
+            asp-route-sort="@ViewBag.Sort"
+            asp-route-ascending="@ViewBag.Ascending">Odustani</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

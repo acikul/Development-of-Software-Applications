@@ -1,0 +1,112 @@
+@model PlanNabaveViewModel
+@{
+    ViewBag.Title = "Planm nabave br. " + @Model.SifPlanaNabave;
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-8">
+            <h4>
+                Sifra: @Model.SifPlanaNabave Godina: @Model.VrijednostGodine
+            </h4>
+            
+                <h4>
+                    Narucitelj: @Model.NazivNarucitelja (@Model.OibNarucitelja)
+                </h4>
+            
+        </div>
+    </div>
+
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 text-right">
+            <a asp-action="Edit"
+               asp-route-id="@Model.SifPlanaNabave"
+               target="_blank"
+               class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+        </div>
+        <form asp-action="Delete" method="post"
+              asp-route-page="@ViewBag.Page"
+              asp-route-sort="@ViewBag.Sort"
+              asp-route-ascending="@ViewBag.Ascending">
+            <input type="hidden" name="SifPlanaNabave" value="@Model.SifPlanaNabave" />
+            <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+        </form>
+        <div class="col-sm-1 text-left">
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               title="Povratak na popis planova">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    @{
+                        string[] nazivi = { "Sifra Stavke",
+                                             "Evidencijsk iBroj",
+                                             "Predmet Nabave",
+                                             "Vrijedi Od",
+                                             "Vrijedi Do",
+                                             "Napomena",
+                                             "Vrsta Postupka",
+                                             "Vrijednost Nabave",
+                                             "NazivStatusa"
+                                              };
+                        for (int i = 0; i < nazivi.Length; i++)
+                        {
+                            <th class="text-center">
+                                @nazivi[i]
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <br></br>
+            <br></br>
+            <tbody>
+                @foreach (var stavka in Model.Stavke)
+                {
+                    <tr>
+                        <td class="text-left col-sm-4">
+                            @stavka.SifStavke
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.EvidencijskiBroj
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.PredmetNabave
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.VrijediOd
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.VrijediDo
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.Napomena
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.VrstaPostupka
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.VrijednostNabave
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @stavka.NazivStatusa
+                        </td>
+                        
+                        
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,222 @@
+﻿
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link"
+           asp-action="Index" asp-controller="Home">
+            Početna stranica
+        </a>
+    </li>
+
+    <li class="nav-item dropdown">
+    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Matej <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li class="nav-item">
+        <a class="nav-link"
+            asp-action="Index" asp-controller="PlanNabave">
+          PlanNabave
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+            asp-action="Index" asp-controller="StavkaPlanaNabave">
+          Stavka Plana Nabave
+        </a>
+      </li>
+
+      <li class="dropdown-divider"></li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+            asp-action="Index" asp-controller="PlanNabave">
+          PlanNabave (Master-Detail)
+        </a>
+      </li>
+
+      <li>
+        <a class="nav-link" asp-action="JTable" asp-controller="Godina">
+            Godina (JTable)
+        </a>
+        </li>
+    <li>
+        <a class="nav-link" href="~/swagger">
+            Godina (Swagger CRUD)
+        </a>
+    </li>
+
+     
+    </ul>
+  </li>
+
+    <li class="nav-item dropdown">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Luka<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            @*<li>
+                <a class="nav-link" asp-action="Index" asp-controller="VrstaKompetencije">
+                    Vrste kompetencija (jednostavni)
+                </a>
+            </li>*@
+
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="Kompetencija">
+                    Kompetencije (jednostavni)
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="Strucnjak">
+                    Stručnjaci (složeni)
+                </a>
+            </li>
+
+            <li class="dropdown-divider"></li>
+
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="Strucnjak">
+                    Stručnjaci (MD + autocomplete)
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" asp-action="Kompetencije" asp-controller="Report">
+                    PDF izvještaj: Kompetencije
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" asp-action="JTable" asp-controller="VrstKomp">
+                    Vrsta kompetencije (JTable)
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="~/swagger">
+                    Vrsta kompetencije (Swagger CRUD)
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    
+    <li class="nav-item dropdown">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Matija <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="Cpv">
+                    CPV lista
+                </a>
+            </li>
+            <hr style="background-color: white" />
+            <li>
+                <a class="nav-link" asp-action="JTable" asp-controller="Kriterij">
+                    Kriterij (JTable)
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" asp-action="Kriteriji" asp-controller="ReportKriterij">
+                    PDF - Kriteriji
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="~/swagger">
+                    Kriteriji (Swagger CRUD)
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+    <li class="nav-item dropdown">
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Patrik <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="SluzbeniDokument">
+                    Sluzbeni dokument(jednostavni)
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="PrijavaNaNatjecaj" style="border-bottom: 1px dotted #FFF">
+                    Prijava(složeni)
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" asp-action="Index" asp-controller="PrijavaNaNatjecaj">
+                    Prijava(Master-detail + autocomplete)
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" asp-action="JTable" asp-controller="Drzava">
+                    Drzava(JTable)
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="~/swagger">
+                    Drzava(Swagger CRUD)
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    
+   <li class="nav-item dropdown">
+	<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Marko <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+
+        <li>
+            <a class="nav-link" asp-action="Index" asp-controller="Stavka">
+                Stavka(jednostavni)
+            </a>
+        </li>
+
+        <li>
+            <a class="nav-link" asp-action="Index" asp-controller="Troskovnik">
+                Troskovnik(slozeni)
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" asp-action="JTable" asp-controller="Ovlastenik">
+                Ovlastenik(JTable)
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="~/swagger">
+                Ovlastenik(Swagger CRUD)
+            </a>
+        </li>
+
+    </ul>
+    </li>
+
+    
+    <li class="nav-item dropdown">
+      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">Eduard <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+          <li>
+              <a class="nav-link" asp-action="Index" asp-controller="KontaktPonuditelj">
+                  Kontakti ponuditelja (Jednostavni pogled)
+              </a>
+          </li>
+          <li>
+              <a class="nav-link" asp-action="Index" asp-controller="Ponuditelj">
+                  Ponuditelji (složeni prikaz)
+              </a>
+          </li>
+          <hr style="background-color: white" />
+          <li>
+              <a class="nav-link" asp-action="Index" asp-controller="Ponuditelj">
+                  Ponuditelji(md + autocomplete)
+              </a>
+          </li>
+          <li>
+              <a class="nav-link" asp-action="JTable" asp-controller="Grad">
+                  Grad(JTable)
+              </a>
+          </li>
+          <li>
+              <a class="nav-link" href="~/swagger">
+                  Grad(Swagger CRUD)
+              </a>
+          </li>
+      </ul>
+  </li>
+
+</ul>

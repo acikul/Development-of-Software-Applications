@@ -1,0 +1,59 @@
+﻿@model SluzbeniDokument
+
+@{
+    ViewBag.Title = "Ažuriranje dokumenta";
+}
+
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifDokumenta" data-save="" />
+    <div class="form-group">
+        <label asp-for="KlasaDokumenta"></label>
+        <div><span asp-validation-for="KlasaDokumenta" class="text-danger"></span></div>
+        <input asp-for="KlasaDokumenta" class="form-control" data-save="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ImeDokumenta"></label>
+        <div><span asp-validation-for="ImeDokumenta" class="text-danger"></span></div>
+        <input asp-for="ImeDokumenta" class="form-control" data-save="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UrudzbeniBroj"></label>
+        <div><span asp-validation-for="UrudzbeniBroj" class="text-danger"></span></div>
+        <input asp-for="UrudzbeniBroj" class="form-control" data-save="" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SifVrsteDokumenta"></label>
+        <div><span asp-validation-for="SifVrsteDokumenta" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifVrsteDokumenta" asp-items="ViewBag.vrsteDokumenta" data-save="">
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SifPrijave"></label>
+        <div><span asp-validation-for="SifPrijave" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifPrijave" asp-items="ViewBag.prijave" data-save="">
+            <option disabled selected value="">Odaberite šifru prijave na natjecaj</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="TekstDokumenta">Zamjeni file:</label>
+        <div><span asp-validation-for="TekstDokumenta" class="text-danger"></span></div>
+        <input asp-for="TekstDokumenta" type="file" name="binarniZapis" data-save="" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary btn-sm save" type="submit"><i class="fas fa-save"></i>Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

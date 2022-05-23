@@ -1,0 +1,107 @@
+﻿@model PrijaveNaNatjecajViewModel
+
+@{
+    ViewBag.Title = "Prijave na natečaj";
+}
+
+<div class="container">
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <h2>Pregled prijava</h2>
+            <br />
+            <a asp-action="Create">Unos nove prijave(autocomplete)</a>
+        </div>
+        <div class="col-sm-7">
+            <partial name="KriterijPretrage" model="@Model.Filter" />
+        </div>
+    </div>
+</div>
+
+<pager page-info="@Model.PagingInfo" page-filter="@Model.Filter" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-right">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Šifra prijave
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Vrsta ponuditelja
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Datum prijave
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="4" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 4 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Status
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="5" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 5 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Natječaj
+                </a>
+            </th>
+            <th>
+                Ponuditelj
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prijava in Model.Prijave)
+        {
+            <tr>
+                <td class="text-center">
+                    <a asp-action="Show"
+                       asp-route-id="@prijava.SifPrijava"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       asp-route-filter="@Model.Filter"
+                       asp-route-position="@prijava.Position">
+                        @prijava.SifPrijava
+                    </a>
+                </td>
+                <td class="text-left">@prijava.VrstaPonuditelja</td>
+                <td class="text-center">@prijava.DatumPrijave.ToString("dd.MM.yyyy.")</td>
+                <td class="text-center">@prijava.NazivStatusa</td>
+                <td class="text-left">@prijava.NazivNatjecaja</td>
+                <td class="text-center">@prijava.NazivPonuditelj</td>
+                <td class="btn-group">
+                    <a asp-action="Edit"
+                       asp-route-id="@prijava.SifPrijava"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       asp-route-filter="@Model.Filter"
+                       asp-route-position="@prijava.Position"
+                       class="btn btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+
+                    <form asp-action="Delete" method="post"
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending"
+                          asp-route-filter="@Model.Filter">
+                        <input type="hidden" name="SifPrijave" value="@prijava.SifPrijava" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+
+}

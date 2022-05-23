@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KontaktViewModel>
+<table class="table table-striped" id="table-stavke">
+    <thead>
+        <tr>
+            @{ string[] nazivi = { "Kontakt", "Vrsta kontakta"};
+                            for (int i = 0; i < nazivi.Length; i++)
+                            {
+                <th class="text-center">
+                    @nazivi[i]
+                </th> } }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kontakt in Model)
+        {
+    <tr>
+        <td class="text-center col-sm-3">
+            <input type="hidden" class="form-control" name="kontakti[@kontakt.SifVrsteKontakta].TekstKontakta" value="@kontakt.TekstKontakta" />
+            @kontakt.TekstKontakta
+        </td>
+        <td class="text-center col-sm-1">
+            <input type="hidden" class="form-control" name="kontakti[@kontakt.SifVrsteKontakta].SifVrsteKontakta" value="@kontakt.SifVrsteKontakta" />
+            <input type="hidden" class="form-control" name="kontakti[@kontakt.SifVrsteKontakta].VrstaKontakta" value="@kontakt.VrstaKontakta" />
+            @kontakt.VrstaKontakta
+        </td>
+        <td>
+            <input type="hidden" name="kontakti.Index" value="@kontakt.SifVrsteKontakta" />
+            <input type="hidden" name="kontakti[@kontakt.SifVrsteKontakta].SifKontakt" value="@kontakt.SifKontakt" />
+        </td>
+        <td>
+            <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+        </td>
+    </tr>}
+
+    <tr>
+        <td>
+            <input id="kontakt-tekstKontakta" type="text" />
+        </td>
+        <td class="text-center col-sm-1">
+            <select id="kontakt-sifVrsteKontakta" >
+                <option value="1">telefon</option>
+                <option value="2">email</option>
+            </select>
+        </td>
+
+        <td class="text-left" colspan="3">
+            <button id="kontakt-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

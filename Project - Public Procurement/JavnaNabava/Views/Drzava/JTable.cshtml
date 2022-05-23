@@ -1,0 +1,60 @@
+﻿@model DrzaveViewModel
+
+@{
+    ViewBag.Title = "Drzava";
+}
+<link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="~/lib/jtable/lib/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+
+
+<div class="row">
+    <div class="col-sm-12" id="drzave">
+
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/jquery.jtable.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/localization/jquery.jtable.hr.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var baseurl = window.location.href.replace("/Drzava/JTable", "")
+            console.log(baseurl)
+            $('#drzave').jtable({
+                title: 'Popis drzava',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                defaultSorting: 'SifDrzave DESC',
+                actions: {
+                    listAction: baseurl + '/jtable/drzava/getall',
+                    createAction: baseurl + '/jtable/drzava/create',
+                    updateAction: baseurl + '/jtable/drzava/update',
+                    deleteAction: baseurl + '/jtable/drzava/delete'
+                },
+                fields: {
+
+                    SifDrzave: {
+                        key: true,
+                        title: 'Sifra drzave'
+
+                    },
+                    NazivDrzava: {
+                        title: 'Naziv drzave',
+                        width: '20%'
+                    }
+                }
+            });
+
+            $("#drzave").jtable('load');
+
+
+        });
+    </script>
+    <partial name="IncludeValidation" />
+}

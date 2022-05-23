@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+		<PackageReference Include="FluentValidation" Version="9.3.0" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
+		<PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+		<PackageReference Include="PdfRpt.Core" Version="1.4.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="AjaxControlToolkit" Version="20.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="ViewComponents\" />
+		<Folder Include="ModelsValidation\" />
+		<Folder Include="Views\Home\" />
+		<Folder Include="Views\Drzava\" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.min.css" />
+		<Content Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.min.css.map" />
+		<Content Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.css" />
+		<Content Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.css.map" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_mixins.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_modal.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_nav.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_navbar.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_pagination.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_popover.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_print.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_progress.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_reboot.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_root.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_spinners.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_tables.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_toasts.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_tooltip.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_transitions.scss" />
+		<Content Remove="wwwroot\lib\bootstrap\scss\_type.scss" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="Views\Kriterij\JTable.cshtml" />
+	</ItemGroup>
+</Project>

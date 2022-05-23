@@ -1,0 +1,39 @@
+﻿@model Kompetencija
+
+@{
+    ViewBag.Title = "Nova kompetencija";
+}
+
+<h2>Unos nove kompetencije</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="DetaljiKompetencije">Detalji kompetencije</label>
+        <div><span asp-validation-for="DetaljiKompetencije" class="text-danger"></span></div>
+        <input asp-for="DetaljiKompetencije" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Oibstrucnjaka"></label>
+        <div><span asp-validation-for="Oibstrucnjaka" class="text-danger"></span></div>
+        <select class="form-control" asp-for="Oibstrucnjaka" asp-items="ViewBag.oibovi">
+            <option disabled selected value="">Odaberite OIB stručnjaka</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SifVrsteKompetencije"></label>
+        <div><span asp-validation-for="SifVrsteKompetencije" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifVrsteKompetencije" asp-items="ViewBag.vrsteKompetencija">
+            <option disabled selected value="">Odaberite vrstu kompetencije</option>
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

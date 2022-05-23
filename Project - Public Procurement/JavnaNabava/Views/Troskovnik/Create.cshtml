@@ -1,0 +1,34 @@
+﻿@model Troskovnik
+
+@{
+    ViewBag.Title = "Novi troskovnik";
+}
+
+<h2>Unos novog troskovnika</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="form-group">
+        <label asp-for="IspravnoPopunjen"></label>
+        <div><span asp-validation-for="IspravnoPopunjen" class="text-danger"></span></div>
+        <input asp-for="IspravnoPopunjen" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SifValuta"></label>
+        <div><span asp-validation-for="SifValuta" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifValuta" asp-items="ViewBag.sifValute">
+            <option disabled selected value="">Odaberite sifru valute.</option>
+        </select>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

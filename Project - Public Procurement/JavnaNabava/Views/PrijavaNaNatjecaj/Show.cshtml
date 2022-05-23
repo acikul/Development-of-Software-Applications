@@ -1,0 +1,92 @@
+﻿@model PrijavaNaNatjecajViewModel
+@{
+    ViewBag.Title = "Prijava br. " + @Model.SifPrijava;
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-sm-8">
+            <h4>
+                @Model.SifPrijava - @Model.DatumPrijave.ToString("d.M.yyyy.")
+            </h4>
+            @if(Model.VrstaPonuditelja == "fizicka osoba")
+            {
+                <h3>
+                    Ponuditelj : @Model.Ponuditelj
+                </h3>
+            }
+            else {
+                <h3>
+                    Konzorcij : @Model.Konzorcij
+                </h3>
+            }
+        </div>
+    </div>
+
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-1 text-right">
+            <a asp-action="Edit"
+               asp-route-id="@Model.SifPrijava"
+               target="_blank"
+               class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+        </div>
+        <form asp-action="Delete" method="post"
+              asp-route-page="@ViewBag.Page"
+              asp-route-sort="@ViewBag.Sort"
+              asp-route-ascending="@ViewBag.Ascending">
+            <input type="hidden" name="SifPrijave" value="@Model.SifPrijava" />
+            <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+        </form>
+        <div class="col-sm-1 text-left">
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               title="Povratak na popis dokumenata">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    @{
+                        string[] nazivi = { "Ime", "Sifra", "Urudžbeni broj", "Klasa", "Vrsta" };
+                        for (int i = 0; i < nazivi.Length; i++)
+                        {
+                            <th class="text-center">
+                                @nazivi[i]
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dokument in Model.Dokumenti)
+                {
+                    <tr>
+                        <td class="text-left col-sm-4">
+                            @dokument.ImeDokumenta
+                        </td>
+                        <td class="text-right col-sm-1">
+                            @dokument.SifDokumenta
+                        </td>
+                        <td class="text-center col-sm-1">
+                            @dokument.UrudzbeniBroj
+                        </td>
+                        <td class="text-right col-sm-2">
+                            @dokument.KlasaDokumenta
+                        </td>
+                        <td class="text-right col-sm-2">
+                            @dokument.VrstaDokumenta
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

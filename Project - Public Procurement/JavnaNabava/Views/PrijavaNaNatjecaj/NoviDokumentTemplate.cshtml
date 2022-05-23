@@ -1,0 +1,25 @@
+﻿<table id="template" style="visibility:hidden">
+    <tr>
+        <td class="text-left col-sm-4">
+            <input type="hidden" name="Dokumenti.Index" value="--ime--" />
+            <input name="Dokumenti[--ime--].ImeDokumenta" class="form-control" value="--ime--" />
+        </td>
+        <td class="text-center col-sm-2">
+            <input type="hidden" name="Dokumenti[--ime--].sifVrsteDokumenta" value="--sifraVrste--" />
+            <input type="hidden" name="Dokumenti[--ime--].VrstaDokumenta" value="--vrsta--" />
+            --vrsta--
+        </td>
+        <td class="text-center col-sm-1">
+            <input name="Dokumenti[--ime--].UrudzbeniBroj" class="form-control" value="--urudzbeniBroj--" />
+        </td>
+        <td class="text-right col-sm-1">
+            <input name="Dokumenti[--ime--].KlasaDokumenta" class="form-control" value="--klasa--" />
+        </td>
+        @*<td class="text-right col-sm-2">
+            <input name="Dokumenti[--ime--].TekstDokumenta" class="form-control" value="--tekst--" />
+        </td>*@
+        <td>
+            <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fas fa-minus"></i></button>
+        </td>
+    </tr>
+</table>

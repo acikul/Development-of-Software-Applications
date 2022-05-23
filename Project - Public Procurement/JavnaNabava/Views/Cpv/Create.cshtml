@@ -1,0 +1,27 @@
+﻿@model Cpv
+
+@{ ViewBag.Title = "Novi dokument"; }
+
+<h2>Unos novog CPV-a</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="SifCpv"></label>
+        <div><span asp-validation-for="SifCpv" class="text-danger"></span></div>
+        <input asp-for="SifCpv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OpisCpv"></label>
+        <div><span asp-validation-for="OpisCpv" class="text-danger"></span></div>
+        <input asp-for="OpisCpv" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

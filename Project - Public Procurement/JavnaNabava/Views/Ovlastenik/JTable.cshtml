@@ -1,0 +1,73 @@
+﻿@model OvlasteniciViewModel
+
+@{
+    ViewBag.Title = "Ovlastenik";
+}
+<link href="~/lib/jqueryui/themes/base/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="~/lib/jtable/lib/themes/lightcolor/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+
+
+<div class="row">
+    <div class="col-sm-12" id="ovlastenici">
+
+    </div>
+</div>
+
+
+@section scripts {
+
+    <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/jquery.jtable.min.js"></script>
+    <script type="text/javascript" src="~/lib/jtable/lib/localization/jquery.jtable.hr.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var baseurl = window.location.href.replace("/Ovlastenik/JTable", "")
+            console.log(baseurl)
+            $('#ovlastenici').jtable({
+                title: 'Popis ovlastenika',
+                paging: true,
+                pageSize: 10,
+                sorting: true,
+                defaultSorting: 'Oibovlastenika DESC',
+                actions: {
+                    listAction: baseurl + '/jtable/ovlastenik/getall',
+                    createAction: baseurl + '/jtable/ovlastenik/create',
+                    updateAction: baseurl + '/jtable/ovlastenik/update',
+                    deleteAction: baseurl + '/jtable/ovlastenik/delete'
+                },
+                fields: {
+
+                    Oibovlastenika: {
+                        //key: true,
+
+                        title: 'OIB ovlastenika'
+
+                    },
+                    ImeOvlastenika: {
+                        title: 'Ime ovlastenika',
+                        width: '20%'
+                    },
+                    PrezimeOvlastenika: {
+                        title: 'PrezimeOvlastenika',
+                        width: '20%'
+                    },
+                    FunkcijaOvlastenika: {
+                        title: 'Funkcija ovlastenika',
+                        width: '20%'
+                    },
+                    /*Oibnarucitelj: {
+                        title: 'OIB narucitelja',
+                        width: '20%'
+                    }*/
+                }
+            });
+
+            $("#ovlastenici").jtable('load');
+
+
+        });
+    </script>
+    <partial name="IncludeValidation" />
+}

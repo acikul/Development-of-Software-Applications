@@ -1,0 +1,92 @@
+@model IEnumerable<StavkaPlanaNabaveViewModel>
+<table class="table table-striped" id="table-stavke">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "EvidencijskiBroj", "PredmetNabave", "VrijediOd", "VrijediDo", "Napomena", "VrstaPostupka", "VrijednostNabave", "Status" };
+                for (int i = 0; i < nazivi.Length; i++)
+                {
+                    <th class="text-center">
+                        @nazivi[i]                        
+                    </th>
+                }
+            }
+            <th></th>           
+        </tr>
+    </thead>
+    <tbody>      
+        @foreach(var stavka in Model)
+        {           
+            <tr>
+                <td class="text-left col-sm-2">
+                <input type="hidden" name="Stavke.Index" value="@stavka.SifStavke" />
+                <input type="hidden" name="Stavke[@stavka.SifStavke].SifStavke" value="@stavka.SifStavke" />
+                <input name="Stavke[@stavka.SifStavke].EvidencijskiBroj" class="form-control" value="@stavka.EvidencijskiBroj" />
+            </td>
+
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].PredmetNabave" class="form-control" value="@stavka.PredmetNabave" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].VrijediOd" class="form-control" value="@stavka.VrijediOd" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].VrijediDo" class="form-control" value="@stavka.VrijediDo" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].Napomena" class="form-control" value="@stavka.Napomena" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].VrstaPostupka" class="form-control" value="@stavka.VrstaPostupka" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].VrijednostNabave" class="form-control" value="@stavka.VrijednostNabave" />
+                </td>
+                <td class="text-center col-sm-1">
+                <input name="Stavke[@stavka.SifStavke].SifStatusa" class="form-control" value="@stavka.SifStatusa" />
+                </td>
+                             
+
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+                </td>               
+            </tr>
+        }        
+        <tr>
+            
+             
+        <td class="text-left col-sm-2">
+            
+            <input id="stavka-EvidencijskiBroj" type="text" />
+        </td>
+        
+        <td class="text-center col-sm-1">
+            <input id="stavka-PredmetNabave" type="text" />
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-VrijediOd" type="text" />
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-VrijediDo" type="text" />
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-Napomena" type="text" />
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-VrstaPostupka" type="text" />
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-VrijednostNabave" type="text" />
+        </td>
+        </td>
+         <td class="text-center col-sm-1">
+            <input id="stavka-Status" type="text" />
+        </td>
+      
+        <td class="text-left" colspan="3">
+            <button id="stavka-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+

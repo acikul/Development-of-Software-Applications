@@ -1,0 +1,80 @@
+﻿@model JavnaNabava.ViewModels.TroskovniciViewModel
+
+@{
+    ViewBag.Title = "Troskovnici";
+}
+
+<h2>Popis troskovnika</h2>
+
+<a asp-action="Create">Unos novog troskovnika</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-right">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Sifra troskovnika
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Ispravno popunjen
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)">
+                    Sifra valute
+                </a>
+            </th>
+            
+            <th>
+                Stavke
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var troskovnik in Model.Troskovnici)
+        {
+            <tr>
+                <td class="text-center">
+                    <a asp-action="Show"
+                       asp-route-id="@troskovnik.SifTroskovnik"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending">
+                        @troskovnik.SifTroskovnik
+                    </a>
+                </td>
+                <td class="text-left">@troskovnik.IspravnoPopunjen</td>
+                <td class="text-center">@troskovnik.ImeValute</td>
+                <td class="text-center">@foreach (var stavka in troskovnik.Stavke){@stavka.SifStavke<span>; </span>}</td>
+                <td class="btn-group">
+                    <a asp-action="Edit"
+                       asp-route-id="@troskovnik.SifTroskovnik"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+
+                    <form asp-action="Delete" method="post"                 
+                          asp-route-page="@Model.PagingInfo.CurrentPage"
+                          asp-route-sort="@Model.PagingInfo.Sort"
+                          asp-route-ascending="@Model.PagingInfo.Ascending">
+                        <input type="hidden" name="SifTroskovnik" value="@troskovnik.SifTroskovnik" />
+                        <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,27 @@
+@model PlanNabave
+
+<tr>
+  <td class="text-left">@Model.SifPlanaNabave</td>
+  <td class="text-left">@Model.SifGodine</td>
+  <td class="text-left">@Model.Oibnarucitelja</td>
+  <td class="text-left">@Model.SifGodineNavigation</td>
+  <td>
+    <a asp-action="Edit"
+        asp-route-id="Model.SifPlanaNabave"       
+        class="btn btn-sm edit" 
+        data-get-ajax="@Url.Action("GetAjax", new { id = Model.SifPlanaNabave })" 
+        data-edit-ajax="@Url.Action("EditAjax", new { id = Model.SifPlanaNabave })" 
+        title="Ažuriraj"><i class="fas fa-edit"></i></a>
+  </td>
+  <td>
+    <form asp-action="Delete" method="post"
+          asp-route-id="@Model.SifPlanaNabave">
+      <button class="btn btn-sm btn-danger delete" 
+              data-delete-ajax="@Url.Action("DeleteAjax", new { id = Model.SifPlanaNabave })" 
+              title="Obriši">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </form>
+  </td>
+</tr>
+  

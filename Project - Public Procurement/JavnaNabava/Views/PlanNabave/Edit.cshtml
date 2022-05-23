@@ -1,0 +1,56 @@
+@model PlanNabaveViewModel
+
+@{
+    ViewBag.Title = "Ažuriranje Plana nabave";
+}
+
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifPlanaNabave"/>
+    
+    
+
+    <div class="form-group">
+        <label asp-for="VrijednostGodine"></label>
+        <div><span asp-validation-for="SifGodine" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifGodine" asp-items="ViewBag.godine">
+            <option disabled selected value="">Odaberite godinu.</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OibNarucitelja"></label>
+        <div><span asp-validation-for="OibNarucitelja" class="text-danger"></span></div>
+        <select class="form-control" asp-for="OibNarucitelja" asp-items="ViewBag.narucitelji">
+            <option disabled selected value="">Odaberite narucitelja.</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <partial name="Stavke" model="Model.Stavke" />
+    </div>
+    
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+
+<partial name="NovaStavkaTemplate" />
+
+
+@section scripts{
+    <partial name="IncludeValidation" />
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+    <script src="~/js/planNabave.js" asp-append-version="true"></script>
+}

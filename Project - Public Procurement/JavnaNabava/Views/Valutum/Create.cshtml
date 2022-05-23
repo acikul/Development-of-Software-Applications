@@ -1,0 +1,32 @@
+﻿@model Valutum
+
+@{
+    ViewBag.Title = "Nova valuta";
+}
+
+<h2>Unos nove valute</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="ImeValute"></label>
+        <div><span asp-validation-for="ImeValute" class="text-danger"></span></div>
+        <input asp-for="ImeValute" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="OznValute"></label>
+        <div><span asp-validation-for="OznValute" class="text-danger"></span></div>
+        <select class="form-control" asp-for="OznValute" asp-items="ViewBag.oznvaluta">
+            <option disabled selected value="">Odaberite državu</option>
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

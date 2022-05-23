@@ -1,0 +1,90 @@
+@model StavkaPlanaNabave
+
+@{
+    ViewBag.Title = "Ažuriranje Stavke Plana nabave";
+}
+
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifStavke"/>
+    
+    <div class="form-group">
+        <label asp-for="EvidencijskiBroj"></label>
+        <div><span asp-validation-for="EvidencijskiBroj" class="text-danger"></span></div>
+        <input asp-for="EvidencijskiBroj" class="form-control" />
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="PredmetNabave"></label>
+        <div><span asp-validation-for="PredmetNabave" class="text-danger"></span></div>
+        <input asp-for="PredmetNabave" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VrijediOd"></label>
+        <div><span asp-validation-for="VrijediOd" class="text-danger"></span></div>
+        <input asp-for="VrijediOd" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VrijediDo"></label>
+        <div><span asp-validation-for="VrijediDo" class="text-danger"></span></div>
+        <input asp-for="VrijediDo" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Napomena"></label>
+        <div><span asp-validation-for="Napomena" class="text-danger"></span></div>
+        <input asp-for="Napomena" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VrstaPostupka"></label>
+        <div><span asp-validation-for="VrstaPostupka" class="text-danger"></span></div>
+        <input asp-for="VrstaPostupka" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="VrijednostNabave"></label>
+        <div><span asp-validation-for="VrijednostNabave" class="text-danger"></span></div>
+        <input asp-for="VrijednostNabave" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SifPlanaNabave"></label>
+        <div><span asp-validation-for="SifPlanaNabave" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifPlanaNabave" asp-items="ViewBag.planovi">
+            <option disabled selected value="">Odaberite plan nabave.</option>
+        </select>
+    </div>
+
+        <div class="form-group">
+        <label asp-for="SifStatusa"></label>
+        <div><span asp-validation-for="SifStatusa" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifStatusa" asp-items="ViewBag.statusi">
+            <option disabled selected value="">Odaberite status.</option>
+        </select>
+    </div>
+
+     
+
+    
+    
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

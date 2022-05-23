@@ -1,0 +1,42 @@
+﻿@model Troskovnik
+
+@{
+    ViewBag.Title = "Azuriranje troskovnika";
+}
+
+<h2>Azuriranje troskovnika</h2>
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifTroskovnik" />
+
+
+    <div class="form-group">
+        <label asp-for="IspravnoPopunjen"></label>
+        <div><span asp-validation-for="IspravnoPopunjen" class="text-danger"></span></div>
+        <input asp-for="IspravnoPopunjen" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SifValuta"></label>
+        <div><span asp-validation-for="SifValuta" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifValuta" asp-items="ViewBag.sifValute">
+        </select>
+    </div>
+
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

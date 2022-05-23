@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SluzbeniDokumentViewModel>
+<table class="table table-striped" id="table-dokumenti">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Ime","Vrsta dokumenta","Urudzbeni broj", "Klasa","Tekst dokumenta" };
+                for (int j = 0; j < nazivi.Length-1; j++)
+                {
+                    <th class="text-center">
+                        @nazivi[j]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dokument in Model)
+        {
+           
+        <tr>
+            <td class="text-left col-sm-4">
+                <input type="hidden" name="Dokumenti.Index" value="@dokument.ImeDokumenta" />
+                <input type="hidden" name="Dokumenti[@dokument.ImeDokumenta].SifDokumenta" value="@dokument.SifDokumenta" />
+                <input name="Dokumenti[@dokument.ImeDokumenta].ImeDokumenta" class="form-control" value="@dokument.ImeDokumenta" />
+            </td>
+            <td class="text-center col-sm-2">
+                <input type="hidden" name="Dokumenti[@dokument.ImeDokumenta].sifVrsteDokumenta" value="@dokument.sifVrsteDokumenta" />
+                <input readonly="readonly" name="Dokumenti[@dokument.ImeDokumenta].VrstaDokumenta" value="@dokument.VrstaDokumenta" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input name="Dokumenti[@dokument.ImeDokumenta].UrudzbeniBroj" class="form-control" value="@dokument.UrudzbeniBroj" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input name="Dokumenti[@dokument.ImeDokumenta].KlasaDokumenta" class="form-control" value="@dokument.KlasaDokumenta" />
+            </td>
+            @*<td class="text-right col-sm-2">
+                <input type="hidden" name="Dokumenti[@dokument.ImeDokumenta].TekstDokumenta" value="@dokument.TekstDokumenta" />
+                @dokument.TekstDokumenta
+            </td>*@
+            <td>
+                <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+            </td>
+        </tr>
+        }
+    <tr>
+        <td class="text-left col-sm-4">
+            <input id="dokument-ime" type="text" />
+        </td>
+        <td>
+            <input id="dokument-sifraVrste" type="hidden" data-autocomplete-placeholder="VrstaDokumenta" readonly="readonly" />
+            <input id="dokument-vrsta" type="text" data-autocomplete="VrstaDokumenta" />
+        </td>
+        <td class="text-center col-sm-1">
+            <input id="dokument-urudzbeniBroj" type="text" />
+        </td>
+        <td class="text-center col-sm-1">
+            <input id="dokument-klasa" type="text" />
+        </td>
+        @*<td class="text-right col-sm-2">
+            <input id="dokument-tekst" type="text" />
+        </td>*@
+        <td class="text-left" colspan="3">
+            <button id="dokument-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+        </td>
+    </tr>
+    </tbody>
+</table>

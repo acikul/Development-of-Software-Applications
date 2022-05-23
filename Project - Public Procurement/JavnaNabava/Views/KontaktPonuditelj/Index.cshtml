@@ -1,0 +1,66 @@
+﻿@model JavnaNabava.ViewModels.KontaktPonuditeljiViewModel
+@{
+    ViewData["Title"] = "Kontakti ponuditelja";
+}
+
+<h1>Kontakti ponuditelja</h1>
+
+<a asp-action="Create">Dodaj novi zapis</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-right">
+</pager><table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Naziv ponuditelja
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)">
+                    Tekst kontakta
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)">
+                    Naziv vrste kontakta
+                </a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.data) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-controller="Ponuditelj"
+                   asp-route-exController="KontaktPonuditelj" asp-route-id="@item.Oibponuditelja"
+                    asp-route-page="@Model.PagingInfo.CurrentPage"
+                    asp-route-sort="@Model.PagingInfo.Sort"
+                    asp-route-ascending="@Model.PagingInfo.Ascending">@Html.DisplayFor(modelItem => item.OibponuditeljaNavigation.NazivPonuditelja)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TekstKontakta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SifVrsteKontaktaNavigation.NazivVrsteKontakta)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SifKontakt"
+                    asp-route-page="@Model.PagingInfo.CurrentPage"
+                    asp-route-sort="@Model.PagingInfo.Sort"
+                    asp-route-ascending="@Model.PagingInfo.Ascending">Uredi</a> 
+
+                <form asp-action="Delete" method="post" asp-route-id="@item.SifKontakt"
+                    asp-route-page="@Model.PagingInfo.CurrentPage"
+                    asp-route-sort="@Model.PagingInfo.Sort"
+                    asp-route-ascending="@Model.PagingInfo.Ascending">
+                    <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                </form>
+</td>
+        </tr>
+}
+    </tbody>
+</table>

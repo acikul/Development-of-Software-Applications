@@ -1,0 +1,37 @@
+﻿@model Cpv
+
+@{
+    ViewBag.Title = "Ažuriranje CPV-a";
+}
+
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifCpv" />
+    <div class="form-group">
+        <label asp-for="SifCpv"></label>
+        <div><span asp-validation-for="SifCpv" class="text-danger"></span></div>
+        <input asp-for="SifCpv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OpisCpv"></label>
+        <div><span asp-validation-for="OpisCpv" class="text-danger"></span></div>
+        <input asp-for="OpisCpv" class="form-control" />
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

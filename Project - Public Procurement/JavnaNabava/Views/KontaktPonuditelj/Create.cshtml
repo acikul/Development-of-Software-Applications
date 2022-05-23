@@ -1,0 +1,39 @@
+﻿@model JavnaNabava.Models.KontaktPonuditelj
+
+@{
+    ViewData["Title"] = "Dodavanje kontakta";
+}
+
+<h2>Unos novog kontakta za ponuditelja</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TekstKontakta" class="control-label"></label>
+                <input asp-for="TekstKontakta" class="form-control" />
+                <span asp-validation-for="TekstKontakta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Ponuditelj</label>
+                <select asp-for="Oibponuditelja" class ="form-control" asp-items="ViewBag.Oibponuditelja"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Vrsta kontakta</label>
+                <select asp-for="SifVrsteKontakta" class ="form-control" asp-items="ViewBag.SifVrsteKontakta"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Pohrani" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Povratak</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

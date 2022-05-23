@@ -1,0 +1,36 @@
+﻿@model Valutum
+
+@{
+    ViewBag.Title = "Ažuriranje valute";
+}
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="SifValuta" />
+    <div class="form-group">
+        <label asp-for="ImeValute"></label>
+        <div><span asp-validation-for="ImeValute" class="text-danger"></span></div>
+        <input asp-for="ImeValute" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OznValute"></label>
+        <div><span asp-validation-for="OznValute" class="text-danger"></span></div>
+        <select class="form-control" asp-for="OznValute" asp-items="ViewBag.oznvaluta">
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

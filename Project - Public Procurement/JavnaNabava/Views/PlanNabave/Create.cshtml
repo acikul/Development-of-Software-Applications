@@ -1,0 +1,37 @@
+@model PlanNabave
+
+@{
+    ViewBag.Title = "Stvaranje Plana nabave";
+}
+
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    
+    <div class="form-group">
+        <label asp-for="Oibnarucitelja"></label>
+        <div><span asp-validation-for="Oibnarucitelja" class="text-danger"></span></div>
+        <input asp-for="Oibnarucitelja" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SifGodine"></label>
+        <div><span asp-validation-for="SifGodine" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifGodine" asp-items="ViewBag.godine">
+            <option disabled selected value="">Odaberite godinu.</option>
+        </select>
+    </div>
+    
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

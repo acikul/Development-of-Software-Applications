@@ -1,0 +1,82 @@
+﻿@model IEnumerable<JavnaNabava.Models.Ponuditelj>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ponuditelji</h1>
+<div class="col-sm-4">
+    <h2>Pregled svih dokumenata</h2>
+    <br />
+    <a asp-action="Create">Unos novog ponuditelja</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Naziv ponuditelja
+            </th>
+            <th>
+                Adresa ponuditelja
+            </th>
+            <th>
+                Poštanski broj ponuditelja
+            </th>
+            <th>
+                Klasa ponuditelja
+            </th>
+            <th>
+                Naziv konzorcija
+            </th>
+            <th>
+                Naziv grada
+            </th>
+            <th>
+                Kontakti
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-route-exController="Ponuditelj" asp-route-id="@item.Oibponuditelja">@Html.DisplayFor(modelItem => item.NazivPonuditelja)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdresaPonuditelja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PbrPonuditelja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KlasaPonuditelja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OibkonzorcijaNavigation.NazivKonzorcija)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SifGradaNavigation.NazivGrada)
+            </td>
+            <td>
+                @foreach (var kontakt in item.KontaktPonuditeljs)
+                {
+                    <p>@kontakt.TekstKontakta</p>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit"
+                   asp-route-id="@item.Oibponuditelja"
+                   class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <form asp-action="Delete" method="post" asp-route-id="@item.Oibponuditelja">
+                    <input type="hidden" name="IdDokumenta" value="@item.Oibponuditelja" />
+                    <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,73 @@
+﻿@model Strucnjak
+
+@{
+    ViewBag.Title = "Izmjena strucnjaka";
+}
+
+<h2>Ažuriranje stručnjaka</h2>
+
+<form asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="Oibstrucnjaka" />
+    <div class="form-group">
+        <label asp-for="ImeStrucnjaka"></label>
+        <div><span asp-validation-for="ImeStrucnjaka" class="text-danger"></span></div>
+        <input asp-for="ImeStrucnjaka" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PrezimeStrucnjaka"></label>
+        <div><span asp-validation-for="PrezimeStrucnjaka" class="text-danger"></span></div>
+        <input asp-for="PrezimeStrucnjaka" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EmailStucnjaka"></label>
+        <div><span asp-validation-for="EmailStucnjaka" class="text-danger"></span></div>
+        <input asp-for="EmailStucnjaka" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BrojMobitelaStrucnjaka"></label>
+        <div><span asp-validation-for="BrojMobitelaStrucnjaka" class="text-danger"></span></div>
+        <input asp-for="BrojMobitelaStrucnjaka" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Oibponuditelja"></label>
+        <div><span asp-validation-for="Oibponuditelja" class="text-danger"></span></div>
+        <select class="form-control" asp-for="Oibponuditelja" asp-items="ViewBag.Ponuditelji">
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SifStrucneSpreme"></label>
+        <div><span asp-validation-for="SifStrucneSpreme" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifStrucneSpreme" asp-items="ViewBag.StrucneSpreme">
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SifGrada"></label>
+        <div><span asp-validation-for="SifGrada" class="text-danger"></span></div>
+        <select class="form-control" asp-for="SifGrada" asp-items="ViewBag.Gradovi">
+        </select>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Spremi</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+
+@section scripts{
+    <partial name="IncludeValidation" />
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/autocomplete.js"></script>
+}

@@ -1,0 +1,107 @@
+﻿@model PrijavaNaNatjecajViewModel
+
+@{
+    ViewBag.Title = "Nova prijava";
+}
+
+<h2>Unos nove prijave</h2>
+<div class="container">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="All" class="form-group row"></div>
+        <div class="form-group row">
+            <div class="text-center col-sm-2">
+                <label class="radio-inline"><input type="radio" asp-for="VrstaPonuditelja" value="fizicka osoba">Osoba</label>
+                <label class="radio-inline"><input type="radio" asp-for="VrstaPonuditelja" value="konzorcij">Konzorcij</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="samokonzorcij">
+                <label asp-for="OIBKonzorcij" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-1">
+                    <input asp-for="OIBKonzorcij" readonly="readonly" class="form-control" data-autocomplete-placeholder="konzorcij" />
+                </div>
+                <div class="col-sm-10">
+                    <input class="form-control" data-autocomplete="konzorcij" asp-for="@Model.Konzorcij" />
+                </div>
+                @*<label asp-for="OIBKonzorcij"></label>
+                <div><span asp-validation-for="OIBKonzorcij" class="text-danger"></span></div>
+                <select class="form-control" asp-for="OIBKonzorcij" asp-items="ViewBag.konzorciji">
+                    <option disabled selected value="">Odaberite konzorcij.</option>
+                </select>*@
+            </div>
+            <div class="samoosoba">
+                <label asp-for="OIBPonuditelj" class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-1">
+                    <input asp-for="OIBPonuditelj" readonly="readonly" class="form-control" data-autocomplete-placeholder="ponuditelj" />
+                </div>
+                <div class="col-sm-10">
+                    <input class="form-control" data-autocomplete="ponuditelj" asp-for="@Model.Ponuditelj" />
+                </div>
+                @*<label asp-for="OIBPonuditelj"></label>
+                <div><span asp-validation-for="OIBPonuditelj" class="text-danger"></span></div>
+                <select class="form-control" asp-for="SifStatus" asp-items="ViewBag.osobe">
+                    <option disabled selected value="">Odaberite ponuditelja.</option>
+                </select>*@
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <label asp-for="SifStatus"></label>
+                <div><span asp-validation-for="SifStatus" class="text-danger"></span></div>
+                <select class="form-control" asp-for="SifStatus" asp-items="ViewBag.statusi">
+                    <option disabled selected value="">Odaberite status prijave.</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="SifNatjecaja"></label>
+                <div><span asp-validation-for="SifNatjecaja" class="text-danger"></span></div>
+                <select class="form-control" asp-for="SifNatjecaja" asp-items="ViewBag.natjecaji">
+                    <option disabled selected value="">Odaberite natječaj.</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label asp-for="SifTroskovnika"></label>
+                <div><span asp-validation-for="SifTroskovnika" class="text-danger"></span></div>
+                <select class="form-control" asp-for="SifTroskovnika" asp-items="ViewBag.troskovnici">
+                    <option disabled selected value="">Odaberite troškovnik.</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+        <button id="save" type="submit" class="btn btn-sm btn-primary save" title="Spremi"><i class="fas fa-save"></i></button>
+        <a class="btn btn-sm btn-primary cancel" asp-action="Index" title="Odustani">
+            <i class="fas fa-undo-alt"></i>
+        </a>
+        @*<div class="col-sm-10">
+            <partial name="Dokumenti" model="Model.Dokumenti" />
+        </div>*@
+    </form>
+</div>
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+
+@section scripts{
+    <partial name="IncludeValidation" />
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+
+    <script type="text/javascript">$(function () {
+      $('input:radio').change(function () {
+        OsobaIliKonzorcij($(this).val());
+      });
+
+      OsobaIliKonzorcij($('input:checked').val());
+    });
+
+    function OsobaIliKonzorcij(tip) {
+      if (tip == "fizicka osoba") {
+        $(".samokonzorcij").hide();
+        $(".samoosoba").show();
+      }
+      else {
+        $(".samoosoba").hide();
+        $(".samokonzorcij").show();
+      }
+    }</script>
+}

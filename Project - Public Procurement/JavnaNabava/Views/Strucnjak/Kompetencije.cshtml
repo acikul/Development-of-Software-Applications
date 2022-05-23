@@ -1,0 +1,64 @@
+﻿@model IEnumerable<KompetencijaViewModel>
+
+<table class="table table-striped" id="table-stavke">
+    <thead>
+        <tr>
+            <th class="text-center">
+                Šifra
+            </th>
+            <th class="text-center">
+                Detalji kompetencije
+            </th>
+            <th class="text-center">
+                Vrsta kompetencije
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var kompetencija in Model)
+        {
+            <tr>
+                <td class="text-left col-sm-4">
+                    <input type="hidden" name="Kompetencije.Index" value="@kompetencija.SifKompetencije" />
+                    <input type="hidden" name="Kompetencije[@kompetencija.SifKompetencije].SifKompetencije" value="@kompetencija.SifKompetencije" readonly="readonly" />
+                    <input type="hidden" name="Kompetencije[@kompetencija.SifKompetencije].Oibstrucnjaka" value="@kompetencija.Oibstrucnjaka" readonly="readonly" />
+                    @kompetencija.SifKompetencije
+                </td>
+
+                <td class="text-center col-sm-1">
+                    <input name="Kompetencije[@kompetencija.SifKompetencije].DetaljiKompetencije" class="form-control" value="@kompetencija.DetaljiKompetencije" />
+                </td>
+
+                <td class="text-center col-sm-1">
+                    <input type="hidden" name="Kompetencije[@kompetencija.SifKompetencije].SifVrsteKompetencije" value="@kompetencija.SifVrsteKompetencije"  readonly="readonly"/>
+                    <input type="hidden" name="Kompetencije[@kompetencija.SifKompetencije].NazivVrsteKompetencije" class="form-control" value="@kompetencija.NazivVrsteKompetencije"/>
+                    @kompetencija.NazivVrsteKompetencije
+                </td>
+
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td class="text-left col-sm-4">
+                <input id="komp-sifra" type="hidden" />
+            </td>
+
+            <td class="text-center col-sm-1">
+                <input id="komp-detalji" type="text" />
+            </td>
+
+            <td lass="text-center col-sm-1">
+                <input id="vrsta-komp-sifra" type="hidden" data-autocomplete-placeholder="VrsteKompetencija" readonly="readonly" />
+                <input id="vrsta-komp-naziv" type="text" data-autocomplete="VrsteKompetencija" />
+            </td>
+
+            <td class="text-left" colspan="3">
+                <button id="komp-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

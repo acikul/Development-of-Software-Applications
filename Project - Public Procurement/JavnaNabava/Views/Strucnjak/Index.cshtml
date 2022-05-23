@@ -1,0 +1,133 @@
+﻿@model StrucnjaciViewModel
+
+@{
+    ViewBag.Title = "Stručnjaci";
+}
+
+<div class="container">
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <h2>Pregled svih stručnjaka</h2>
+            <br />
+            <a asp-action="Create">Unos novog stručnjaka</a>
+        </div>
+        <div class="col-sm-7">
+            <partial name="KriterijPretrage" model="Model.Filter" />
+        </div>
+    </div>
+</div>
+
+<pager page-info="@Model.PagingInfo" page-filter="@Model.Filter" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-right">
+</pager>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <a asp-route-sort="1" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 1 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    OIB stručnjaka
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Ime stručnjaka
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Prezime stručnjaka
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="4" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 4 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Email stručnjaka
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="5" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 5 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Mob stručnjaka
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="6" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 6 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Naziv poslodavca
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="7" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 7 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Stručna sprema
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="8" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 8 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Naziv grada
+                </a>
+            </th>
+            <th>
+                <a asp-route-sort="9" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 9 ? !Model.PagingInfo.Ascending : true)" asp-route-filter="@Model.Filter">
+                    Kompetencije
+                </a>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var strucnjak in Model.Strucnjaci)
+        {
+        <tr>
+            <td class="text-center">
+                <a asp-action="Show"
+                   asp-route-id="@strucnjak.Oibstrucnjaka"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-sort="@Model.PagingInfo.Sort"
+                   asp-route-ascending="@Model.PagingInfo.Ascending"
+                   asp-route-filter="@Model.Filter"
+                   asp-route-position="@strucnjak.Position">
+                    @strucnjak.Oibstrucnjaka
+                </a>
+            </td>
+            <td class="text-left">@strucnjak.ImeStrucnjaka</td>
+            <td class="text-left">@strucnjak.PrezimeStrucnjaka</td>
+            <td class="text-center">@strucnjak.EmailStucnjaka</td>
+            <td class="text-center">@strucnjak.BrojMobitelaStrucnjaka</td>
+            <td class="text-left">@strucnjak.NazivPonuditelja</td>
+            <td class="text-left">@strucnjak.NazivStrucneSpreme</td>
+            <td class="text-left">@strucnjak.NazivGrada</td>
+            <td class="text-left">@strucnjak.Komps</td>
+
+            <td>
+                <a asp-action="Edit"
+                   asp-route-id="@strucnjak.Oibstrucnjaka"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-sort="@Model.PagingInfo.Sort"
+                   asp-route-ascending="@Model.PagingInfo.Ascending"
+                   asp-route-filter="@Model.Filter"
+                   asp-route-position="@strucnjak.Position"
+                   class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+            </td>
+            <td>
+                <form asp-action="Delete" method="post"
+                      asp-route-page="@Model.PagingInfo.CurrentPage"
+                      asp-route-sort="@Model.PagingInfo.Sort"
+                      asp-route-ascending="@Model.PagingInfo.Ascending"
+                      asp-route-filter="@Model.Filter">
+                    <input type="hidden" name="Oibstrucnjaka" value="@strucnjak.Oibstrucnjaka" />
+                    <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+
+@section scripts{
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+}
